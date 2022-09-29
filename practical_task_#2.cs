@@ -134,9 +134,10 @@
 
             for (int k = 0; k < mass.GetLength(0); k++)
             {
+                Console.Write(Convert.ToString(k + 1) + "\t");
                 for (int l = 0; l < mass.GetLength(1); l++)
                 {
-                    Console.Write($"{k+1} * {l + 1} = " + mass[k, l] + "\t");
+                    Console.Write($"|{k+1} * {l + 1} = " + mass[k, l] + "|" + "\t");
                 }
                 Console.WriteLine();
             }
