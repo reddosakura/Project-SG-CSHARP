@@ -121,11 +121,13 @@
 
         static void MultiplicationTable()
         {
-            int[,] mass = new int[10, 10];
+            int rows = 10;
+            int cols = 10;
+            int[,] mass = new int[rows, cols];
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < cols; j++)
                 {
                     mass[i, j] = (i + 1) * (j + 1);
 
