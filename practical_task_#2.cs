@@ -186,7 +186,7 @@
 
                     foreach (int elem in num_mass)
                     {
-                        Console.Write(elem);
+                        Console.Write(Convert.ToString(elem) + " ");
                     }
                 }
 
