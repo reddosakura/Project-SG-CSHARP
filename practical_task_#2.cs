@@ -121,11 +121,13 @@
 
         static void MultiplicationTable()
         {
-            int[,] mass = new int[10, 10];
+            int rows = 10;
+            int cols = 10;
+            int[,] mass = new int[rows, cols];
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < rows; i++)
             {
-                for (int j = 0; j < 10; j++)
+                for (int j = 0; j < cols; j++)
                 {
                     mass[i, j] = (i + 1) * (j + 1);
 
@@ -134,9 +136,10 @@
 
             for (int k = 0; k < mass.GetLength(0); k++)
             {
+                Console.Write(Convert.ToString(k + 1) + "\t");
                 for (int l = 0; l < mass.GetLength(1); l++)
                 {
-                    Console.Write($"{k+1} * {l + 1} = " + mass[k, l] + "\t");
+                    Console.Write($"|{k+1} * {l + 1} = " + mass[k, l] + "|" + "\t");
                 }
                 Console.WriteLine();
             }
@@ -183,7 +186,7 @@
 
                     foreach (int elem in num_mass)
                     {
-                        Console.Write(elem);
+                        Console.Write(Convert.ToString(elem) + " ");
                     }
                 }
 
