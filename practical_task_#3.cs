@@ -86,7 +86,8 @@ namespace Pianinos_
         //     return copied;
         // }
         
-        static string[,] matrix = new string[4, 3] { { "[ ] A"," - ", "1" }, { "[ ] B", " - ", "2" }, { "[ ] C", " - ", "3" }, {"[ ] D", " - ", "4"} };
+        static string[,] matrix = new string[12, 3] { { "[ ] C"," - ", "A" }, { "[ ] C#", " - ", "W" }, { "[ ] D", " - ", "E" }, {"[ ] Eb", " - ", "F"}, {"[ ] E", " - ", "V"}, 
+            {"[ ] F", " - ", "B"}, {"[ ] F#", " - ", "N"}, {"[ ] G", " - ", "M"}, {"[ ] G#", " - ", "K", }, {"[ ] A", " - ", "O"}, {"[ ] Bb", " - ", "P"}, {"[ ] B", " - ", "Oem7"}};
         // static string[,] copy = CopyStringMatrix(matrix);
 
         static void Control()
