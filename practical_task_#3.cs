@@ -10,7 +10,7 @@ namespace Pianinos_
         {
             for (int i = 0; i < mass.GetLength(0); i++)
             {
-                if (mass[i, 2] == sym)
+                if (mass[i, 1] == sym)
                 {
                     return true;
                 }
@@ -18,55 +18,85 @@ namespace Pianinos_
             return false;
         }
 
-        static void PlayPianos()
+        public static string GetValue(string[,] matrix, string key)
         {
-            
+            // string value = "";
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                // Console.WriteLine(matrix[i, 0]);
+                if (matrix[i, 1] == key)
+                {
+                    // Console.WriteLine(matrix[i, 0]);
+                    return matrix[i, 0];
+                }
+            }
+            return "none";
         }
 
-        static void Notes()
+        static void PlayPianos()
         {
             Console.Clear();
-            
-            int current_coord = 1;
-            
+            string[,] notes = new string[12, 2]
+            {
+                { "130", "C" }, { "139", "C#" }, { "147", "D" },
+                { "156", "Eb" }, { "165", "E" }, { "175", "F" },
+                { "185", "F#" }, { "196", "G" }, { "208", "G#" },
+                { "220", "A" }, { "233", "Bb" }, { "247", "B" }
+            };
+
+            int[] octaves = new[] { 1, 2, 4, 8, 16, 32, 64, 128 };
+            // Console.WriteLine(GetValue(notes, GetValue(matrix, "Oem7")));
+            int currentOctave = 0;
+            Console.WriteLine("Игра в пианино. Для переключения октав используйте клавиши F1-F8. Для выхода нажмите Delete");
             while (true)
             {
-                Console.WriteLine("Выберите таблицу:\n[ ] Таблица частот звучаний нот в Гц\n[ ] Обозначение нот\n[ ] Назад");
-                Console.SetCursorPosition(1, current_coord);
-                Console.WriteLine("#");
+                
                 ConsoleKeyInfo key = Console.ReadKey();
-                if (key.Key == ConsoleKey.UpArrow)
+                
+                if (key.Key == ConsoleKey.F1)
                 {
-                    if (current_coord - 1 >= 1)
-                    {
-                        current_coord--;
-                    }
+                    currentOctave = 0;
+                }
+                else if (key.Key == ConsoleKey.F2)
+                {
+                    currentOctave = 1;
+                }
+                else if (key.Key == ConsoleKey.F3)
+                {
+                    currentOctave = 2;
+                }
+                else if (key.Key == ConsoleKey.F4)
+                {
+                    currentOctave = 3;
+                }
+                else if (key.Key == ConsoleKey.F5)
+                {
+                    currentOctave = 4;
+                }
+                else if (key.Key == ConsoleKey.F6)
+                {
+                    currentOctave = 5;
+                }
+                else if (key.Key == ConsoleKey.F7)
+                {
+                    currentOctave = 6;
+                }
+                else if (key.Key == ConsoleKey.F8)
+                {
+                    currentOctave = 7;
+                }
+                else if (GetValue(matrix, Convert.ToString(key.Key)) != "none")
+                {
+                    Console.Clear();
+                    Console.WriteLine(GetValue(matrix, Convert.ToString(key.Key)) + $" Текущая октава: {currentOctave}");
+                    Console.Beep(Convert.ToInt32(GetValue(notes, GetValue(matrix, Convert.ToString(key.Key)))) * octaves[currentOctave], 450);
+                }
+                else if (key.Key == ConsoleKey.Delete)
+                {
+                    break;
                 }
                 
-                else if (key.Key ==ConsoleKey.DownArrow)
-                {
-                    if (current_coord + 1 <= 3)
-                    {
-                        current_coord++;
-                    }    
-                }
                 
-                if (key.Key == ConsoleKey.Enter)
-                {
-                    if (current_coord == 1)
-                    {
-                        Console.WriteLine("1");
-                    }
-                    else if (current_coord == 2)
-                    {
-                        Console.WriteLine("2");
-                    }
-                    else if (current_coord == 3)
-                    {
-                        break;
-                    }
-                }
-                Console.Clear();
             }
             
         }
@@ -86,9 +116,12 @@ namespace Pianinos_
         //     return copied;
         // }
         
-        static string[,] matrix = new string[12, 3] { { "[ ] C"," - ", "A" }, { "[ ] C#", " - ", "W" }, { "[ ] D", " - ", "E" }, {"[ ] Eb", " - ", "F"}, {"[ ] E", " - ", "V"}, 
-            {"[ ] F", " - ", "B"}, {"[ ] F#", " - ", "N"}, {"[ ] G", " - ", "M"}, {"[ ] G#", " - ", "K", }, {"[ ] A", " - ", "O"}, {"[ ] Bb", " - ", "P"}, {"[ ] B", " - ", "Oem7"}};
-        // static string[,] copy = CopyStringMatrix(matrix);
+        static string[,] matrix = new string[12, 2] { { "C","A" }, { "C#", "W" }, { "D", "E" }, {"Eb", "F"}, {"E", "V"}, 
+            {"F", "B"}, {"F#", "N"}, {"G", "M"}, {"G#", "K", }, {"A", "O"}, {"Bb", "P"}, {"B", "Oem7"}};
+        
+        // static string[,] matrix = new string[12, 3] { { "[ ] C"," - ", "A" }, { "[ ] C#", " - ", "W" }, { "[ ] D", " - ", "E" }, {"[ ] Eb", " - ", "F"}, {"[ ] E", " - ", "V"}, 
+        //     {"[ ] F", " - ", "B"}, {"[ ] F#", " - ", "N"}, {"[ ] G", " - ", "M"}, {"[ ] G#", " - ", "K", }, {"[ ] A", " - ", "O"}, {"[ ] Bb", " - ", "P"}, {"[ ] B", " - ", "Oem7"}};
+        // // static string[,] copy = CopyStringMatrix(matrix);
 
         static void Control()
         {
@@ -98,9 +131,9 @@ namespace Pianinos_
             {
                 for (int j = 0; j < matrix.GetLength(1); j++)
                 {
-                    Console.Write(matrix[i, j]);
+        
+                    Console.Write(($" -- [{matrix[i, j]}]"));
                 }
-
                 Console.WriteLine();
             }
             ConsoleKeyInfo key = Console.ReadKey();
@@ -117,18 +150,19 @@ namespace Pianinos_
             int current_coord = 1;
             string message =
                 "Выберите клавишу которую хотите поменять с помощью стрелок, нажмите Enter и введите новое значение";
-            // ConsoleKeyInfo key = Console.ReadKey();
+
 
            while (true)
            {
                Console.WriteLine(message);
                for (int i = 0; i < matrix.GetLength(0); i++)
                {
+                   Console.Write("[ ]");
                    for (int j = 0; j < matrix.GetLength(1); j++)
                    {
-                       Console.Write(matrix[i, j]);
+        
+                       Console.Write($" - [{matrix[i, j]}]");
                    }
-           
                    Console.WriteLine();
                }
                Console.WriteLine("[ ] Выход");
@@ -185,7 +219,7 @@ namespace Pianinos_
                            {
                                message =
                                    "Выберите клавишу которую хотите поменять с помощью стрелок, нажмите Enter и введите новое значение";
-                               matrix[current_coord - 1, 2] = Convert.ToString(nkey.Key);
+                               matrix[current_coord - 1, 1] = Convert.ToString(nkey.Key);
                            }
                        }
                    }
@@ -209,7 +243,7 @@ namespace Pianinos_
                 Console.WriteLine("----------\n" +
                                   "===Меню===" +
                                   "\n----------");
-                Console.WriteLine("[ ] - Играть\n[ ] - Управление\n[ ] - Ноты\n[ ] - Выход");
+                Console.WriteLine("[ ] - Играть\n[ ] - Управление\n[ ] - Выход");
                 Console.SetCursorPosition(1, current_coord);
                 Console.WriteLine("#");
                 ConsoleKeyInfo key = Console.ReadKey();
@@ -223,7 +257,7 @@ namespace Pianinos_
                 }
                 else if (key.Key == ConsoleKey.DownArrow)
                 {
-                    if ((current_coord + 1) <= 6)
+                    if ((current_coord + 1) <= 5)
                     {
                         current_coord++;
                     }
@@ -234,7 +268,7 @@ namespace Pianinos_
                     // Console.SetCursorPosition(0, 7);
                     if (current_coord == 3)
                     {
-                         
+                        PlayPianos();
                         Console.WriteLine("menu_option_1");
                     }
                     else if (current_coord == 4)
@@ -244,12 +278,7 @@ namespace Pianinos_
                     }
                     else if (current_coord == 5)
                     {
-                        Notes();
-                        Console.WriteLine("menu_option_3");
-                    }
-                    else if (current_coord == 6)
-                    {
-                        Console.WriteLine("exit_option");
+                        Console.WriteLine("\n------------------\nВыход из программы\n------------------\n");
                         break;
                     }
                 }
@@ -259,10 +288,9 @@ namespace Pianinos_
 
         public static void Main()
         {
-            // print();
-            // Control();
+
             CuiMenu();
+
         }
     }
 }
-// Console.Beep(130 * (int)Math.Pow(2, 4), 400);
