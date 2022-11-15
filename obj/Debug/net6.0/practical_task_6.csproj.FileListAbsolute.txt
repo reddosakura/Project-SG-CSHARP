@@ -1,0 +1,17 @@
+/home/reddosakura/practical_task_6/bin/Debug/net6.0/practical_task_6
+/home/reddosakura/practical_task_6/bin/Debug/net6.0/practical_task_6.deps.json
+/home/reddosakura/practical_task_6/bin/Debug/net6.0/practical_task_6.runtimeconfig.json
+/home/reddosakura/practical_task_6/bin/Debug/net6.0/practical_task_6.dll
+/home/reddosakura/practical_task_6/bin/Debug/net6.0/ref/practical_task_6.dll
+/home/reddosakura/practical_task_6/bin/Debug/net6.0/practical_task_6.pdb
+/home/reddosakura/practical_task_6/obj/Debug/net6.0/practical_task_6.csproj.AssemblyReference.cache
+/home/reddosakura/practical_task_6/obj/Debug/net6.0/practical_task_6.GeneratedMSBuildEditorConfig.editorconfig
+/home/reddosakura/practical_task_6/obj/Debug/net6.0/practical_task_6.AssemblyInfoInputs.cache
+/home/reddosakura/practical_task_6/obj/Debug/net6.0/practical_task_6.AssemblyInfo.cs
+/home/reddosakura/practical_task_6/obj/Debug/net6.0/practical_task_6.csproj.CoreCompileInputs.cache
+/home/reddosakura/practical_task_6/obj/Debug/net6.0/practical_task_6.dll
+/home/reddosakura/practical_task_6/obj/Debug/net6.0/ref/practical_task_6.dll
+/home/reddosakura/practical_task_6/obj/Debug/net6.0/practical_task_6.pdb
+/home/reddosakura/practical_task_6/obj/Debug/net6.0/practical_task_6.genruntimeconfig.cache
+/home/reddosakura/practical_task_6/bin/Debug/net6.0/Newtonsoft.Json.dll
+/home/reddosakura/practical_task_6/obj/Debug/net6.0/practical_task_6.csproj.CopyComplete
